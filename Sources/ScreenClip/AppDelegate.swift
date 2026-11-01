@@ -91,6 +91,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
       return
     }
     HUD.hide()
+    // The overlay activates ScreenClip, which would bring a Settings window left
+    // behind other apps to the front. If ScreenClip isn't active, the user isn't using it.
+    if !NSApp.isActive { settingsWindow?.close() }
     phase = .selecting
     let controller = SelectionController()
     selector = controller
