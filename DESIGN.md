@@ -22,7 +22,7 @@ Recording stops by itself at the max length.
 
 - Clipboard only. No files are kept. Temp files that the paste needs are deleted later.
 - One paste gives **one item** for the frames, not one file per frame.
-- A setting picks what gets copied: frame sheet PDF, MP4, or both.
+- A setting picks what gets copied: frame sheet PDF or MP4. A paste can't carry two files, so "both" isn't an option. The menu can copy the last capture in the other format.
 - The clipboard holds file references. T3 Code copies pasted files into its own attachments folder, so the app deletes its temp files on the next capture and on quit.
 
 ## Frame sheet rules
@@ -30,6 +30,7 @@ Recording stops by itself at the max length.
 - Frames must stay sharp enough to read text. Agents shrink large images (roughly 1500 to 2500 px on the long edge), so each page stays near 2000 px wide.
 - Frames are drawn at the highest scale that fits, never below 1x (point size). Small capture areas get 2x Retina detail and up to 6 frames per page. Large areas get fewer frames per page, down to 1.
 - Pick frames where the screen changed. Skip duplicates.
+- If more frames changed than the cap allows, spread the cap along the timeline by how much changed (70%) and by elapsed time (30%). Busy stretches get more frames, and a long pause still gets one. An earlier version kept only the largest changes and missed the key moment in a test clip.
 - Each frame gets a number and a timestamp.
 
 ## Settings
@@ -38,8 +39,9 @@ Recording stops by itself at the max length.
 |---|---|---|
 | Hotkey | any | ⇧⌘Z |
 | Frame rate | 10, 15, 30, 60 | 15 |
-| Max length | seconds | 30 |
-| Output | PDF, MP4, both | both |
+| Max length | 10, 15, 30, 60, 120 s | 30 |
+| Output | PDF, MP4 | PDF |
+| Max frames in PDF | 12, 24, 36, 48, 72 | 48 |
 | Show cursor | on, off | on |
 | Launch at login | on, off | off |
 
@@ -57,4 +59,4 @@ From `experiments/paste-test`, pasting into T3 Code with Claude as the agent:
 | PNG as a file | Agent sees the image |
 | PDF as a file | Agent sees every page inline, all frames readable |
 | MP4 as a file | Agent gets only a file path and can't watch it |
-| PNG + MP4 together | Unclear, needs a retest |
+| PNG + MP4 together | Nothing pastes |
