@@ -6,7 +6,7 @@ A macOS menu bar app that records a selected area of the screen and puts the res
 
 Agents read an animated GIF as one still frame. A test on a 229 frame GIF showed only frame 1. Video-capable models sample about 1 frame per second, which misses fast events. Claude can't watch video at all.
 
-So the main output is a **frame sheet**: frames laid out in a grid, each labeled with its number and timestamp. An MP4 is the second output, for people and for models that accept video.
+So the main output is a **frame sheet PDF**: frames laid out in grids, one grid per page, each frame labeled with its number and timestamp. An MP4 is the second output, for people and for models that accept video.
 
 ## Flow
 
@@ -22,11 +22,13 @@ Recording stops by itself at the max length.
 
 - Clipboard only. No files are kept. Temp files that the paste needs are deleted later.
 - One paste gives **one item** for the frames, not one file per frame.
-- A setting picks what gets copied: frame sheet, MP4, or both.
+- A setting picks what gets copied: frame sheet PDF, MP4, or both.
+- The clipboard holds file references. T3 Code copies pasted files into its own attachments folder, so the app deletes its temp files on the next capture and on quit.
 
 ## Frame sheet rules
 
-- Frames must stay sharp enough to read text. Agents shrink large images (roughly 1500 to 2500 px on the long edge), so the sheet must respect that limit.
+- Frames must stay sharp enough to read text. Agents shrink large images (roughly 1500 to 2500 px on the long edge), so each page stays near 2000 px wide.
+- Frames are drawn at 1x (point size), not 2x Retina. Small capture areas fit 6 frames per page. Large ones fit fewer.
 - Pick frames where the screen changed. Skip duplicates.
 - Each frame gets a number and a timestamp.
 
@@ -37,7 +39,7 @@ Recording stops by itself at the max length.
 | Hotkey | any | ⇧⌘Z |
 | Frame rate | 10, 15, 30, 60 | 15 |
 | Max length | seconds | 30 |
-| Output | sheet, MP4, both | both |
+| Output | PDF, MP4, both | both |
 | Show cursor | on, off | on |
 | Launch at login | on, off | off |
 
@@ -45,6 +47,14 @@ Recording stops by itself at the max length.
 
 Native Swift for macOS. Windows may come later as a separate app with the same design.
 
-## Open questions
+## Paste test results
 
-- What T3 Code accepts on paste: one PNG, a PDF, an MP4, several files at once. See `experiments/paste-test`.
+From `experiments/paste-test`, pasting into T3 Code with Claude as the agent:
+
+| Pasted | Result |
+|---|---|
+| PNG as image data | Agent sees the image |
+| PNG as a file | Agent sees the image |
+| PDF as a file | Agent sees every page inline, all frames readable |
+| MP4 as a file | Agent gets only a file path and can't watch it |
+| PNG + MP4 together | Unclear, needs a retest |
