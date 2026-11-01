@@ -5,7 +5,7 @@ import ImageIO
 /// Temp files live in one folder. The app clears it on launch, quit and each new capture.
 enum TempFiles {
   static let root = FileManager.default.temporaryDirectory
-    .appendingPathComponent("screenshot-gif", isDirectory: true)
+    .appendingPathComponent("screenclip", isDirectory: true)
 
   static func wipe() {
     try? FileManager.default.removeItem(at: root)

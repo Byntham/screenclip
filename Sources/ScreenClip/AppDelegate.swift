@@ -86,7 +86,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     guard CGPreflightScreenCaptureAccess() else {
       CGRequestScreenCaptureAccess()
       showError(
-        "Screen Recording permission is needed. Turn it on for Screenshot GIF in "
+        "Screen Recording permission is needed. Turn it on for ScreenClip in "
           + "System Settings > Privacy & Security > Screen & System Audio Recording, then try again.")
       return
     }
@@ -274,7 +274,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     let recording = phase == .recording
     let image = NSImage(
       systemSymbolName: recording ? "record.circle.fill" : "record.circle",
-      accessibilityDescription: "Screenshot GIF")
+      accessibilityDescription: "ScreenClip")
     image?.isTemplate = true
     button.image = image
     button.contentTintColor = recording ? .systemRed : nil
@@ -307,7 +307,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     menu.addItem(mp4Item)
     menu.addItem(.separator())
     menu.addItem(item("Settings…", #selector(openSettings)))
-    menu.addItem(item("Quit Screenshot GIF", #selector(quit)))
+    menu.addItem(item("Quit ScreenClip", #selector(quit)))
   }
 
   private func item(_ title: String, _ action: Selector) -> NSMenuItem {
@@ -328,7 +328,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     if settingsWindow == nil {
       let window = NSWindow(
         contentViewController: NSHostingController(rootView: SettingsView(settings: settings)))
-      window.title = "Screenshot GIF Settings"
+      window.title = "ScreenClip Settings"
       window.styleMask = [.titled, .closable]
       window.isReleasedWhenClosed = false
       settingsWindow = window
@@ -342,7 +342,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     HUD.hide()
     NSApp.activate()
     let alert = NSAlert()
-    alert.messageText = "Screenshot GIF"
+    alert.messageText = "ScreenClip"
     alert.informativeText = message
     alert.runModal()
   }

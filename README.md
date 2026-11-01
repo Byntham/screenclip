@@ -1,6 +1,6 @@
 <img src="assets/icon.svg" width="64" height="64" alt="">
 
-# screenshot-gif
+# screenclip
 
 A macOS menu bar app that records an area of the screen and copies it to the clipboard, ready to paste into an agent chat.
 
@@ -20,14 +20,14 @@ Esc cancels at any point and nothing is copied. The menu bar icon has "Copy Last
 ./scripts/build-app.sh --install
 ```
 
-This builds `Screenshot GIF.app` and copies it to `~/Applications`. The first launch asks for Screen Recording permission.
+This builds `ScreenClip.app` and copies it to `~/Applications`. The first launch asks for Screen Recording permission.
 
 The build is ad hoc signed, so macOS asks for the permission again after each rebuild. To avoid that, set `SIGN_IDENTITY` to a code signing identity from your keychain.
 
 Check frame picking and the PDF layout without recording:
 
 ```
-.build/release/ScreenshotGif --pdf-from-gif in.gif out.pdf [maxFrames]
+.build/release/ScreenClip --pdf-from-gif in.gif out.pdf [maxFrames]
 ```
 
 See [DESIGN.md](DESIGN.md) for the reasoning behind the design.

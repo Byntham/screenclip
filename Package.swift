@@ -2,12 +2,12 @@
 import PackageDescription
 
 let package = Package(
-  name: "ScreenshotGif",
+  name: "ScreenClip",
   platforms: [.macOS(.v14)],
   targets: [
     .executableTarget(
-      name: "ScreenshotGif",
-      path: "Sources/ScreenshotGif",
+      name: "ScreenClip",
+      path: "Sources/ScreenClip",
       swiftSettings: [.swiftLanguageMode(.v5)]
     )
   ]

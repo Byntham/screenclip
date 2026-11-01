@@ -45,7 +45,7 @@ final class Recorder: NSObject, SCStreamOutput, SCStreamDelegate, @unchecked Sen
   private let selection: Selection
   private let fps: Int
   private let showCursor: Bool
-  private let queue = DispatchQueue(label: "screenshot-gif.recorder")
+  private let queue = DispatchQueue(label: "screenclip.recorder")
 
   private var stream: SCStream?
   private var writer: AVAssetWriter?

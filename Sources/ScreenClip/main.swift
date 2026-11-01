@@ -2,7 +2,7 @@ import AppKit
 
 let args = CommandLine.arguments
 
-// Dev check: ScreenshotGif --pdf-from-gif <in.gif> <out.pdf> [maxFrames]
+// Dev check: ScreenClip --pdf-from-gif <in.gif> <out.pdf> [maxFrames]
 if args.count >= 4, args[1] == "--pdf-from-gif" {
   do {
     let result = try Exporter.pdfFromGIF(

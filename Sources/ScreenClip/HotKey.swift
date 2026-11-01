@@ -6,7 +6,7 @@ final class HotKey {
   private static var handlers: [UInt32: () -> Void] = [:]
   private static var nextID: UInt32 = 1
   private static var installed = false
-  private static let signature: OSType = 0x5347_4946  // "SGIF"
+  private static let signature: OSType = 0x5343_4C50  // "SCLP"
 
   private var ref: EventHotKeyRef?
   private let id: UInt32
