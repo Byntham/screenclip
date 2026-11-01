@@ -28,7 +28,7 @@ Recording stops by itself at the max length.
 ## Frame sheet rules
 
 - Frames must stay sharp enough to read text. Agents shrink large images (roughly 1500 to 2500 px on the long edge), so each page stays near 2000 px wide.
-- Frames are drawn at 1x (point size), not 2x Retina. Small capture areas fit 6 frames per page. Large ones fit fewer.
+- Frames are drawn at the highest scale that fits, never below 1x (point size). Small capture areas get 2x Retina detail and up to 6 frames per page. Large areas get fewer frames per page, down to 1.
 - Pick frames where the screen changed. Skip duplicates.
 - Each frame gets a number and a timestamp.
 
